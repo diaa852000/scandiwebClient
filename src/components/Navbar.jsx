@@ -12,37 +12,28 @@ const Navbar = () => {
         handleCancel,
         handleDeleteSelected,
         selectedProducts,
-        hasFormError,
         errors,
-        isSuccessfullySaved
+        isSuccessfullySaved,
     } = useProductContext();
 
     const navigateTo = useNavigate();
 
-    
-    useEffect(() => {
-        console.log(isSuccessfullySaved)
-        console.log(errors)
-        // console.log(Array.isArray(errors))
-        // console.log(errors?.length)
-    },[errors, isSuccessfullySaved])
-
     const onSave = async () => {
         try {
-            // const form = document.getElementById('product_form');
-
             await handleSave();
-            
-            // console.log('out if')
-            // console.log("errors inside function out if", errors)
-            if (isSuccessfullySaved) {
-                navigateTo('/')
-                // console.log('first')
-            }
+
+
         } catch (error) {
             console.error("error product not added", error)
         }
     }
+
+    useEffect(() => {
+        if(errors?.length === 0 ){
+            navigateTo('/')
+        }
+
+    },[errors, isSuccessfullySaved])
 
     const onCancel = () => {
         handleCancel();
