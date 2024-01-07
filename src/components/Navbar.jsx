@@ -14,6 +14,8 @@ const Navbar = () => {
         selectedProducts,
         errors,
         isSuccessfullySaved,
+        setFormData,
+        setErrors,
     } = useProductContext();
 
     const navigateTo = useNavigate();
@@ -30,14 +32,16 @@ const Navbar = () => {
 
     useEffect(() => {
         if(errors?.length === 0 ){
-            navigateTo('/')
+            navigateTo('/');
+            setErrors(null);
+            setFormData({})
         }
 
     },[errors, isSuccessfullySaved])
 
     const onCancel = () => {
         handleCancel();
-        navigateTo('/')
+        navigateTo('/');
     }
 
     const onDelete = async () => {
