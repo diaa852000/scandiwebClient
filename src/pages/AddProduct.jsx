@@ -21,7 +21,7 @@ const AddProduct = () => {
                 
                 <form id="product_form" className=" flex flex-col gap-1 justify-center md:max-w-[700px] mx-auto">
                     <div className="w-full flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
-                        <label htmlFor="sku" className="md:text-xl font-normal p-0.5 w-36">SKU</label>
+                        <label htmlFor="sku" className=" font-normal p-0.5 w-36">SKU</label>
                         <input
                             id="sku"
                             type="text"
@@ -34,7 +34,7 @@ const AddProduct = () => {
                     </div>
 
                     <div className="w-full flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
-                        <label htmlFor="name" className="md:text-xl font-normal p-0.5 w-36">Name</label>
+                        <label htmlFor="name" className=" font-normal p-0.5 w-36">Name</label>
                         <input
                             id="name"
                             type="text"
@@ -47,7 +47,7 @@ const AddProduct = () => {
                     </div>
 
                     <div className="w-full flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
-                        <label htmlFor="price" className="md:text-xl font-normal p-0.5 w-36">Price ($)</label>
+                        <label htmlFor="price" className=" font-normal p-0.5 w-36">Price ($)</label>
                         <input
                             id="price"
                             type="number"
@@ -62,7 +62,7 @@ const AddProduct = () => {
                     <div className="w-full flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
                         <label
                             htmlFor="productType"
-                            className="md:text-base font-medium p-1.5 rounded w-36"
+                            className="md:text-base rounded w-36"
                         >
                             Type Switcher
                         </label>

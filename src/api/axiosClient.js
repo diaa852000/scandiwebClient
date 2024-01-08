@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost/task';
+const BASE_URL = 'http://localhost/scandiwebtask/api';
 
 const axiosClient = axios.create({
     baseURL: BASE_URL,

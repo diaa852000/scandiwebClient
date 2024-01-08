@@ -23,17 +23,22 @@ const Navbar = () => {
     const onSave = async () => {
         try {
             await handleSave();
-
-
         } catch (error) {
             console.error("error product not added", error)
         }
     }
+    
+    useEffect(() => {
+        console.log(errors);
+        console.log(errors?.length);
+        console.log(isSuccessfullySaved)
+    }, [errors, isSuccessfullySaved])
+
 
     useEffect(() => {
         if(errors?.length === 0 ){
             navigateTo('/');
-            setErrors(null);
+            // setErrors(null);
             setFormData({})
         }
 

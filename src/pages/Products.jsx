@@ -17,7 +17,7 @@ const Products = () => {
     return (
         <div className="flex-grow">
             <div className="md:px-12 my-5">
-                <div className="product_list">
+                <div className="product_list ">
                     {products?.map(product =>
                         <Product
                             key={product.SKU}

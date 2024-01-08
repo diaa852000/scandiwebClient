@@ -26,7 +26,7 @@ export const DVDForm = () => {
     return (
         <>
             <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
-                <label htmlFor="Size" className="md:text-xl p-0.5 w-36 capitalize">
+                <label htmlFor="Size" className="p-0.5 w-36 capitalize">
                     size (MB)
                 </label>
                 <input
@@ -56,7 +56,7 @@ export const BookForm = () => {
     return (
         <>
             <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
-                <label htmlFor="Weight" className="md:text-xl p-0.5 w-36 capitalize">
+                <label htmlFor="Weight" className="p-0.5 w-36 capitalize">
                     Weight (KG)
                 </label>
                 <input
@@ -85,7 +85,7 @@ export const FurnitureForm = () => {
     return (
         <>
             <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
-                <label htmlFor="Height" className="md:text-xl p-0.5 w-36 capitalize">
+                <label htmlFor="Height" className="p-0.5 w-36 capitalize">
                     Height (CM)
                 </label>
                 <input
@@ -99,7 +99,7 @@ export const FurnitureForm = () => {
                 />
             </div>
             <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
-                <label htmlFor="Width" className="md:text-xl p-0.5 w-36 capitalize">
+                <label htmlFor="Width" className="p-0.5 w-36 capitalize">
                     Width (CM)
                 </label>
                 <input
@@ -113,7 +113,7 @@ export const FurnitureForm = () => {
                 />
             </div>
             <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-1 p-1 md:p-2">
-                <label htmlFor="Length" className="md:text-xl p-0.5 w-36 capitalize">
+                <label htmlFor="Length" className="p-0.5 w-36 capitalize">
                     Length (CM)
                 </label>
                 <input

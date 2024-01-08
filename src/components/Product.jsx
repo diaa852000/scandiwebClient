@@ -5,7 +5,7 @@ const Product = ({ id, Name, price, productType, productValue, onCheckboxChange 
     const {selectedProducts} = useProductContext();
 
     return (
-        <div className="min-h-[180px] max-h-[200px] max-w-[300px] min-w-[220px] cursor-pointer border p-2 bg-white
+        <div className="min-h-[180px] max-h-[200px] max-w-[250px] min-w-[220px] w-full cursor-pointer border p-2 bg-white
             rounded-md mx-auto min-[470px]:mx-0 shadow-sm hover:bg-slate-200/15 transition-all ease-in-out duration-100"
         >
             <input

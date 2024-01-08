@@ -7,10 +7,10 @@ import { ProductContextProvider } from './context/ProdoctContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ProductContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ProductContextProvider>
+      <ProductContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ProductContextProvider>
   </React.StrictMode>
 )

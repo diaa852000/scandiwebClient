@@ -51,33 +51,34 @@ export const ProductContextProvider = ({ children }) => {
                 newErrors.push(productType_err);
             }
         }
-    
+
         setErrors(newErrors);
         setIsSuccessfullySaved(false);
 
-        return isSuccessfullySaved;
+        return newErrors.length === 0 ? false : true
     }
 
     const checkUniqueKey = (response) => {
+        const unique_key_message = 'Duplicate SKU: The SKU already exists.';
+
         if(response.data.status === 0)
         {
-            if(response.data && response.data.message.includes('Duplicate SKU'))
-            {
-                setErrors(prev => [...prev, 'Duplicate SKU: The SKU already exists.'])
+            if(response.data && response.data.message.includes('Duplicate SKU')){
+                setErrors([unique_key_message])
+                setIsSuccessfullySaved(false);
+                return false;
             }
             else 
             {
                 setErrors([response.data.message]);
+                setIsSuccessfullySaved(false);
+                return false;
             }
-            
-            setIsSuccessfullySaved(false);
-
-            return isSuccessfullySaved;
         }
         else
         {
             setIsSuccessfullySaved(true);
-            return isSuccessfullySaved;
+            return true;
         }
     }
 
@@ -87,9 +88,10 @@ export const ProductContextProvider = ({ children }) => {
         try {
             const response = await axiosClient.post('/addproduct.php', formData);
             if(!hasFormError(form)){
-                
-                if(checkUniqueKey(response)){
-
+                if(!checkUniqueKey(response)){
+                    setIsSuccessfullySaved(false);
+                    throw new Error("not unique sku");
+                }else{
                     setIsSuccessfullySaved(true);
                 }
             }
@@ -98,9 +100,10 @@ export const ProductContextProvider = ({ children }) => {
         }
     }
 
+
     const handleCancel = () => {
         setFormData({});
-        setErrors([]);
+        setErrors(null);
         setIsSuccessfullySaved(false);
     }
 
