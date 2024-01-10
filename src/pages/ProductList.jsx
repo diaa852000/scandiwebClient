@@ -3,7 +3,7 @@ import {Product} from '../components'
 import { useProductContext } from "../context/ProdoctContext"
 
 
-const Products = () => {
+const ProductList = () => {
     const { 
         handleSelectedList, 
         products, 
@@ -14,18 +14,18 @@ const Products = () => {
         handleFetchProducts();
     }, [handleFetchProducts])
 
-    return (
+    return (    
         <div className="flex-grow">
             <div className="md:px-12 my-5">
                 <div className="product_list ">
-                    {products?.map(product =>
+                    {Array.isArray(products) && products?.map(product =>
                         <Product
                             key={product.SKU}
                             id={product.SKU}
                             Name={product.Name}
                             price={product.Price}
                             productType={product.Product_Type}
-                            productValue={product.Product_Value}
+                            productDetails={product.Product_Details}
                             onCheckboxChange={() => handleSelectedList(product.SKU)}
                         />
                     )}
@@ -35,4 +35,4 @@ const Products = () => {
     )
 }
 
-export default Products
+export default ProductList

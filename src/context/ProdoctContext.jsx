@@ -16,7 +16,7 @@ export const ProductContextProvider = ({ children }) => {
     const [errors, setErrors] = useState(null);
     const [formData, setFormData] = useState({});
     const [selectedProducts, setSelectedProducts] = useState([]);
-    const [isSuccessfullySaved,setIsSuccessfullySaved] = useState(false);
+    const [isSuccessfullySaved, setIsSuccessfullySaved] = useState(false);
 
     const getChange = (e) => {
         setFormData(prevState => {
@@ -33,21 +33,18 @@ export const ProductContextProvider = ({ children }) => {
 
         const productTypesList = ['Furniture', 'DVD', 'Book'];
         const productType = document.getElementById('productType').value;
-    
+
         const inputs = document.querySelectorAll("[data-input]");
-    
-        if([...inputs].some(input => !input.value.trim()))
-        {
+
+        if ([...inputs].some(input => !input.value.trim())) {
             newErrors.push(general_err);
         }
 
-        if(productTypesList.includes(productType))
-        {
+        if (productTypesList.includes(productType)) {
             const specificTypeFields = [...document.querySelectorAll('.input-value')];
             const specificTypeData = specificTypeFields.map(input => input.value.trim());
 
-            if(specificTypeData.some(value => !value))
-            {
+            if (specificTypeData.some(value => !value)) {
                 newErrors.push(productType_err);
             }
         }
@@ -55,51 +52,41 @@ export const ProductContextProvider = ({ children }) => {
         setErrors(newErrors);
         setIsSuccessfullySaved(false);
 
-        return newErrors.length === 0 ? false : true
+        return newErrors.length === 0 ? false : true;
     }
 
-    const checkUniqueKey = (response) => {
-        const unique_key_message = 'Duplicate SKU: The SKU already exists.';
+    const isDuplicateData = (dataSent, existingData) => {
+        const unique_key_message = 'Product with SKU already exisit';
 
-        if(response.data.status === 0)
-        {
-            if(response.data && response.data.message.includes('Duplicate SKU')){
-                setErrors([unique_key_message])
-                setIsSuccessfullySaved(false);
-                return false;
-            }
-            else 
-            {
-                setErrors([response.data.message]);
-                setIsSuccessfullySaved(false);
-                return false;
-            }
-        }
-        else
-        {
-            setIsSuccessfullySaved(true);
+        const hasDuplicated =  existingData.some(item => item.SKU === dataSent.SKU);
+
+        if(hasDuplicated) {
+            setErrors([unique_key_message]);
+            setIsSuccessfullySaved(false);
             return true;
+        } else {
+            return false;
         }
-    }
-
+    };
+    
     const handleSave = async () => {
         const form = document.getElementById('product_form');
-
+    
         try {
-            const response = await axiosClient.post('/addproduct.php', formData);
-            if(!hasFormError(form)){
-                if(!checkUniqueKey(response)){
-                    setIsSuccessfullySaved(false);
-                    throw new Error("not unique sku");
-                }else{
+            if (!hasFormError(form) && !isDuplicateData(formData, products)) {
+                await axiosClient.post('/addproduct.php', formData)
+                setErrors(null);
+                    setFormData({});
                     setIsSuccessfullySaved(true);
-                }
+                    
+                    await handleFetchProducts();
             }
         } catch (error) {
-            console.log(error)
+            console.error('Error in handleSave:', error);
+            setIsSuccessfullySaved(false);
+            throw error;
         }
-    }
-
+    };
 
     const handleCancel = () => {
         setFormData({});

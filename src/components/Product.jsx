@@ -1,8 +1,10 @@
 import { useProductContext } from "../context/ProdoctContext"
 
-const Product = ({ id, Name, price, productType, productValue, onCheckboxChange }) => {
+const Product = ({ id, Name, price, productType, productDetails, onCheckboxChange }) => {
 
     const {selectedProducts} = useProductContext();
+    
+    const parsedDetails = JSON.parse(productDetails);
 
     return (
         <div className="min-h-[180px] max-h-[200px] max-w-[250px] min-w-[220px] w-full cursor-pointer border p-2 bg-white
@@ -18,9 +20,9 @@ const Product = ({ id, Name, price, productType, productValue, onCheckboxChange 
                 <p>{id}</p>
                 <p>{Name}</p>
                 <p>{price} $</p>
-                {productType === "DVD" && <p>Size: {productValue} MB</p>}
-                {productType === "Book" && <p>Weight: {productValue} KG</p>}
-                {productType === "Furniture" && <p>Dimension: {productValue} HxWxL</p>}
+                {productType === "DVD" && <p>Size: {parsedDetails.Size} MB</p>}
+                {productType === "Book" && <p>Weight: {parsedDetails.Weight} KG</p>}
+                {productType === "Furniture" && <p>Dimension: {parsedDetails.Height} x {parsedDetails.Width} x {parsedDetails.Length} HxWxL</p>}
             </div>
         </div>
     )

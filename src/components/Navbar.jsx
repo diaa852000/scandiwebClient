@@ -16,6 +16,7 @@ const Navbar = () => {
         isSuccessfullySaved,
         setFormData,
         setErrors,
+        handleFetchProducts
     } = useProductContext();
 
     const navigateTo = useNavigate();
@@ -27,22 +28,6 @@ const Navbar = () => {
             console.error("error product not added", error)
         }
     }
-    
-    useEffect(() => {
-        console.log(errors);
-        console.log(errors?.length);
-        console.log(isSuccessfullySaved)
-    }, [errors, isSuccessfullySaved])
-
-
-    useEffect(() => {
-        if(errors?.length === 0 ){
-            navigateTo('/');
-            // setErrors(null);
-            setFormData({})
-        }
-
-    },[errors, isSuccessfullySaved])
 
     const onCancel = () => {
         handleCancel();
@@ -61,6 +46,15 @@ const Navbar = () => {
             console.error('Failed to delete selected products:', error);
         }
     };
+
+    useEffect(() => {
+        if(errors?.length === 0 ){
+            navigateTo('/');
+            setErrors(null);
+            setFormData({})
+        }
+    },[errors, isSuccessfullySaved, handleFetchProducts])
+
 
     return (
         <div className="px-1 py-5 md:py-2 md:px-12 border-b flex justify-between items-center bg-white">
